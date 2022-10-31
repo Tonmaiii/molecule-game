@@ -20,21 +20,23 @@
     div {
         position: absolute;
         right: 0;
+        display: flex;
     }
 
     span {
         margin: 1rem;
+        margin-left: 0.25rem;
         font-size: 2rem;
-        display: inline-block;
-        text-align: right;
+        display: flex;
     }
 
     .timer {
-        width: 2.6rem;
+        text-align: right;
     }
 
     .percentage {
         width: 5rem;
+        text-align: right;
     }
 
     .percentage[data-range='10'] {

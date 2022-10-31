@@ -17,53 +17,65 @@
     let state = ''
     let completed = false
 
-    let molecule = order[round]
     let answer: string
     let showAnswer = true
+
+    const percentages = Array(rounds).fill(100)
+
+    $: if (round + 1 > rounds) {
+        completed = true
+        stopTimer()
+    }
+
     $: {
         answer = $answerArray.join('')
-        if (!showAnswer && answer) {
+        if (answer) {
+            correct = false
             showAnswer = true
             state = ''
         }
-        if (answer === molecule.name && !revealAnswer) {
+    }
+
+    let correct = false
+
+    const submit = () => {
+        if (revealAnswer) return
+        if (answer === molecule.name) {
             state = 'correct'
-            if (round + 2 < rounds) {
-                setTimeout(() => {
-                    round++
-                    showAnswer = false
-                    clearText()
-                })
-            } else {
-                completed = true
-                stopTimer()
-            }
+            correct = true
+            setTimeout(() => {
+                state = 'correct'
+                round++
+                wrong = 0
+                showAnswer = false
+                clearText()
+            })
+        } else {
+            state = 'wrong'
+            wrong++
+            percentages[round] = 50 / wrong
         }
-        molecule = order[round]
     }
 
     let revealAnswer = false
-    let skipped = 0
+    let wrong = 0
     const reveal = () => {
         if (revealAnswer) return
 
         state = 'wrong'
+        percentages[round] = 0
         showAnswer = true
         revealAnswer = true
-        skipped++
         setTimeout(() => {
             round++
+            wrong = 0
             showAnswer = false
-            clearText()
             revealAnswer = false
-
-            if (round + 1 > rounds) {
-                completed = true
-                stopTimer()
-            }
+            clearText()
         }, 1000)
     }
-    $: percentage = skipped ? Math.round((1 - skipped / rounds) * 100) : 100
+    $: percentage = Math.round(percentages.reduce((a, b) => a + b) / rounds)
+    $: molecule = order[round]
 </script>
 
 <div class="container">
@@ -76,11 +88,11 @@
                 </h2>
             {/if}
         </div>
-        <UtilButtons on:reveal={reveal} />
+        <UtilButtons on:reveal={reveal} on:sumbit={submit} />
         <SelectorMenu />
         <Timer {percentage} />
     {:else}
-        <h1 class="percentage" data-range={percentage}>
+        <h1 class="percentage" data-range={Math.round(percentage / 10)}>
             {percentage}%
         </h1>
         <br />

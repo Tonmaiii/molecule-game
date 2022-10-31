@@ -7,12 +7,17 @@
     const revealAnswer = () => {
         dispatch('reveal')
     }
+
+    const submitAnswer = () => {
+        dispatch('sumbit')
+    }
 </script>
 
 <div class="container">
-    <button class="delete" on:click={deleteText}>delete</button>
-    <button class="clear-all" on:click={clearText}>clear all</button>
-    <button class="reveal" on:click={revealAnswer}>reveal</button>
+    <button on:click={deleteText}>delete</button>
+    <button on:click={clearText}>clear</button>
+    <button on:click={submitAnswer}>sumbit</button>
+    <button on:click={revealAnswer}>reveal</button>
 </div>
 
 <style>
