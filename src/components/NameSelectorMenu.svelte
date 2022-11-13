@@ -1,7 +1,6 @@
 <script lang="ts">
     import { resetOptions } from '../stores/name'
     import { clickOutside } from '../util/clickOutside'
-    import Delete from './UtilButtons.svelte'
     import ElementSelector from './ElementSelector.svelte'
     import MiscSelector from './MiscSelector.svelte'
 </script>

@@ -70,7 +70,7 @@ export default [
         variations: ['iodine', 'iodide', 'iodic', 'iodate', 'iodous', 'iodite']
     },
     {
-        base: 'Fl',
+        base: 'F',
         variations: [
             'fluorine',
             'fluoride',

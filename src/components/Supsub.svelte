@@ -4,8 +4,8 @@
 </script>
 
 <span>
-    <h1 class="sup">{sup}</h1>
-    <h1 class="sub">{sub}</h1>
+    <div class="sup">{sup}</div>
+    <div class="sub">{sub}</div>
 </span>
 
 <style>
@@ -14,15 +14,16 @@
         flex-direction: column;
         margin-bottom: -0.4em;
         line-height: 1em;
-        font-size: 4rem;
+        font-size: 50%;
         text-align: left;
     }
 
     .sub,
     .sup {
-        height: 6rem;
+        height: 1.5em;
         margin: 0;
         font-size: inherit;
+        text-decoration: inherit;
         vertical-align: baseline;
     }
 </style>

@@ -20,14 +20,16 @@
             {#if c.match(/\d/)}
                 <Supsub sup={oxidationText} sub={c} />
             {:else}
-                <h1>{c}</h1>
+                {c}
                 <Supsub sup={oxidationText} />
             {/if}
         {:else if c.match(/\d/)}
             <Supsub sub={c} />
         {:else}
-            <h1>{c}</h1>
+            {c}
         {/if}
+    {:else}
+        <Supsub sup={oxidationText} />
     {/each}
 </div>
 
@@ -36,14 +38,5 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex: 1;
-    }
-
-    h1 {
-        font-size: 8rem;
-        text-align: center;
-        margin: 0;
-        position: relative;
-        display: inline;
     }
 </style>

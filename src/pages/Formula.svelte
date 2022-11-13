@@ -1,14 +1,20 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
-    import { answerArray, clearText, deleteText } from '../stores/name'
+    import {
+        answerArray,
+        clearAnswer,
+        deleteAnswer,
+        oxidation,
+        setOxidation
+    } from '../stores/formula'
 
-    import Formula from '../components/Formula.svelte'
     import molecules from '../data/molecules'
     import shuffle from '../util/shuffle'
-    import SelectorMenu from '../components/NameSelectorMenu.svelte'
+    import SelectorMenu from '../components/FormulaSelectorMenu.svelte'
     import UtilButtons from '../components/UtilButtons.svelte'
     import Timer from '../components/Timer.svelte'
     import { stopTimer, timer, timerText } from '../stores/timer'
+    import Formula from '../components/Formula.svelte'
 
     const order = shuffle(molecules)
 
@@ -29,7 +35,7 @@
 
     $: {
         answer = $answerArray.join('')
-        if (answer) {
+        if (answer || $oxidation) {
             showAnswer = true
             state = ''
         }
@@ -37,14 +43,15 @@
 
     const submit = () => {
         if (revealAnswer) return
-        if (answer === molecule.name) {
+        if (answer === molecule.formula && $oxidation === molecule.oxidation) {
             state = 'correct'
             setTimeout(() => {
                 state = 'correct'
                 round++
                 wrong = 0
                 showAnswer = false
-                clearText()
+                clearAnswer()
+                setOxidation(0)
             })
         } else {
             state = 'wrong'
@@ -67,7 +74,8 @@
             wrong = 0
             showAnswer = false
             revealAnswer = false
-            clearText()
+            clearAnswer()
+            setOxidation(0)
         }, 1000)
     }
     $: percentage = Math.round(percentages.reduce((a, b) => a + b) / rounds)
@@ -76,22 +84,22 @@
 
 <div class="container">
     {#if !completed}
-        <h1 class="text">
-            <Formula
-                formula={molecule.formula}
-                oxidation={molecule.oxidation}
-            />
-        </h1>
+        <h2 class="text">{molecule.name}</h2>
         <div class="text">
             {#if showAnswer}
-                <h2 out:fade|local data-state={state}>
-                    {revealAnswer ? molecule.name : answer}
-                </h2>
+                <h1 out:fade|local data-state={state}>
+                    <Formula
+                        formula={revealAnswer ? molecule.formula : answer}
+                        oxidation={revealAnswer
+                            ? molecule.oxidation
+                            : $oxidation}
+                    />
+                </h1>
             {/if}
         </div>
         <UtilButtons
-            on:delete={deleteText}
-            on:clear={clearText}
+            on:delete={deleteAnswer}
+            on:clear={clearAnswer}
             on:reveal={reveal}
             on:sumbit={submit}
         />
@@ -103,7 +111,7 @@
         </h1>
         <br />
         <h1>{timerText($timer)}</h1>
-        <h2>Name</h2>
+        <h2>Formula</h2>
     {/if}
 </div>
 
@@ -115,23 +123,23 @@
         flex: 1;
     }
 
-    h1 {
-        font-size: 8rem;
-        text-align: center;
-        margin: 0;
-    }
-
     h2 {
         font-size: 4rem;
         text-align: center;
         margin: 0;
     }
 
-    h2[data-state='correct'] {
+    h1 {
+        font-size: 8rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    h1[data-state='correct'] {
         color: #0ab10a;
     }
 
-    h2[data-state='wrong'] {
+    h1[data-state='wrong'] {
         color: #e01212;
     }
 
