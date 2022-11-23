@@ -1,6 +1,7 @@
 <main>
     <a href="/#/name">Name from formula</a> <br />
-    <a href="/#/formula">Formula from name</a>
+    <a href="/#/formula">Formula from name</a><br />
+    <a href="/#/leaderboard">Leaderboard</a>
 </main>
 
 <style>

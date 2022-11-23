@@ -11,7 +11,6 @@
         '/': Home,
         '/name': Name,
         '/formula': Formula,
-        '/leaderboard': Leaderboard,
-        '/leaderboard/:gamemode': Leaderboard
+        '/leaderboard/:gamemode?': Leaderboard
     }}
 />
