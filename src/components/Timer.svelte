@@ -36,12 +36,12 @@
     .timer {
         position: absolute;
         text-align: right;
-        right: 11rem;
+        right: 12rem;
     }
 
     .percentage {
         position: absolute;
-        right: 5.2rem;
+        right: 6.2rem;
         text-align: right;
     }
 
