@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store'
 
 export const timer = writable(0)
+export const timerMS = writable(0)
 let startTime = 0
 let running = true
 
@@ -14,6 +15,7 @@ export const stopTimer = () => {
 
 const update = () => {
     timer.set(Math.floor((Date.now() - startTime) / 1000))
+    timerMS.set(Date.now() - startTime)
     if (running) {
         requestAnimationFrame(update)
     }

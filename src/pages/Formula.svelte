@@ -13,8 +13,9 @@
     import SelectorMenu from '../components/FormulaSelectorMenu.svelte'
     import UtilButtons from '../components/UtilButtons.svelte'
     import Timer from '../components/Timer.svelte'
-    import { stopTimer, timer, timerText } from '../stores/timer'
+    import { stopTimer, timer, timerMS, timerText } from '../stores/timer'
     import Formula from '../components/Formula.svelte'
+    import ScoreSubmit from '../components/ScoreSubmit.svelte'
 
     const order = shuffle(molecules)
 
@@ -82,8 +83,8 @@
     $: molecule = order[round]
 </script>
 
-<div class="container">
-    {#if !completed}
+{#if !completed}
+    <div class="container">
         <h2 class="text">{molecule.name}</h2>
         <div class="text">
             {#if showAnswer}
@@ -105,15 +106,16 @@
         />
         <SelectorMenu />
         <Timer {percentage} />
-    {:else}
+    </div>
+{:else}
+    <div class="result">
         <h1 class="percentage" data-range={Math.floor(percentage / 10)}>
             {percentage}%
         </h1>
-        <br />
         <h1>{timerText($timer)}</h1>
-        <h2>Formula</h2>
-    {/if}
-</div>
+        <ScoreSubmit gamemode="formula" time={$timerMS} {percentage} />
+    </div>
+{/if}
 
 <style>
     .text {
@@ -127,6 +129,16 @@
         font-size: 4rem;
         text-align: center;
         margin: 0;
+    }
+
+    .result {
+        text-align: center;
+        font-size: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
     }
 
     h1 {
