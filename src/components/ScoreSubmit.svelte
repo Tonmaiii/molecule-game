@@ -17,6 +17,7 @@
         const newScore = push(scoreList)
         set(newScore, { time, percentage, name })
         submitted = true
+        location.hash = `#/leaderboard/${gamemode}`
     }
 </script>
 

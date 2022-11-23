@@ -3,6 +3,8 @@
     import { db } from '../firebase'
     import { timerText } from '../stores/timer'
 
+    export let params: { gamemode: string }
+
     const nameRef = ref(db, 'name')
     const formulaRef = ref(db, 'formula')
 
@@ -19,14 +21,14 @@
         )
     })
 
-    let gamemode: string = 'name'
+    let gamemode = params.gamemode ?? 'name'
 </script>
 
 <main>
     <h1>Leaderboard</h1>
 
     <div class="tabs">
-        <button on:click={() => (gamemode = 'name')}>Name</button>
+        <button on:click={() => (gamemode = 'name')}>Naming</button>
         <button on:click={() => (gamemode = 'formula')}>Formula</button>
     </div>
     <hr />
@@ -57,11 +59,13 @@
 
     .tabs {
         margin-bottom: 2rem;
+        font-size: 1.5rem;
     }
 
     hr {
-        width: 100%;
+        align-self: stretch;
         border: 1px solid black;
+        margin: 0;
     }
 
     .leaderboard {
