@@ -98,7 +98,7 @@
             on:sumbit={submit}
         />
         <SelectorMenu />
-        <Timer {percentage} />
+        <Timer {percentage} total={rounds} completed={round} />
     </div>
 {:else}
     <div class="result">

@@ -3,6 +3,8 @@
     import { resetTimer, timer, timerText } from '../stores/timer'
 
     export let percentage = 100
+    export let completed: number
+    export let total: number
 
     onMount(() => {
         resetTimer()
@@ -14,6 +16,7 @@
     <span class="percentage" data-range={Math.floor(percentage / 10)}
         >{Math.round(percentage)}%</span
     >
+    <span class="counter">{completed}/{total}</span>
 </div>
 
 <style>
@@ -31,11 +34,20 @@
     }
 
     .timer {
+        position: absolute;
         text-align: right;
+        right: 11rem;
     }
 
     .percentage {
-        width: 5rem;
+        position: absolute;
+        right: 5.2rem;
+        text-align: right;
+    }
+
+    .counter {
+        position: absolute;
+        right: 0rem;
         text-align: right;
     }
 
