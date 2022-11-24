@@ -20,6 +20,16 @@
             (a, b) => b.percentage - a.percentage || a.time - b.time
         )
     })
+    
+    onValue(formulaRef, snapshot => {
+        formulaBoard = []
+        snapshot.forEach(score => {
+            formulaBoard.push(score.val())
+        })
+        formulaBoard = formulaBoard.sort(
+            (a, b) => b.percentage - a.percentage || a.time - b.time
+        )
+    })
 
     let gamemode = params.gamemode ?? 'name'
 </script>
