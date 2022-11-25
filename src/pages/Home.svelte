@@ -1,7 +1,8 @@
 <main>
     <a href="/#/name">Name from formula</a> <br />
     <a href="/#/formula">Formula from name</a><br />
-    <a href="/#/leaderboard">Leaderboard</a>
+    <a href="/#/leaderboard">Leaderboard</a><br />
+    <h1>HPO3 2- is now biphosphate ion !!<h1/>
 </main>
 
 <style>
