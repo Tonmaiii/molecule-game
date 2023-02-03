@@ -8,6 +8,7 @@
         setOxidation
     } from '../stores/formula'
 
+    import { onMount } from 'svelte'
     import BackButton from '../components/BackButton.svelte'
     import Formula from '../components/Formula.svelte'
     import SelectorMenu from '../components/FormulaSelectorMenu.svelte'
@@ -15,10 +16,16 @@
     import Timer from '../components/Timer.svelte'
     import UtilButtons from '../components/UtilButtons.svelte'
     import molecules from '../data/molecules'
-    import { stopTimer, timer, timerMS, timerText } from '../stores/timer'
+    import {
+        resetTimer,
+        stopTimer,
+        timer,
+        timerMS,
+        timerText
+    } from '../stores/timer'
     import shuffle from '../util/shuffle'
 
-    const order = shuffle(molecules)
+    let order = shuffle(molecules)
 
     let round = 0
     const rounds = molecules.length
@@ -27,6 +34,18 @@
 
     let answer: string
     let showAnswer = true
+
+    onMount(() => {
+        order = shuffle(molecules)
+        round = 0
+        state = ''
+        completed = false
+        answer = null
+        showAnswer = true
+        revealAnswer = false
+        wrong = 0
+        resetTimer()
+    })
 
     const percentages = Array(rounds).fill(100)
 

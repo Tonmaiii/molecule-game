@@ -6,7 +6,9 @@ let startTime = 0
 let running = true
 
 export const resetTimer = () => {
+    running = true
     startTime = Date.now()
+    requestAnimationFrame(update)
 }
 
 export const stopTimer = () => {
