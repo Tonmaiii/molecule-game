@@ -4,13 +4,14 @@
     import { fade } from 'svelte/transition'
     import { answerArray, clearText, deleteText } from '../stores/name'
 
+    import BackButton from '../components/BackButton.svelte'
     import Formula from '../components/Formula.svelte'
-    import molecules from '../data/molecules'
-    import shuffle from '../util/shuffle'
     import SelectorMenu from '../components/NameSelectorMenu.svelte'
-    import UtilButtons from '../components/UtilButtons.svelte'
     import Timer from '../components/Timer.svelte'
+    import UtilButtons from '../components/UtilButtons.svelte'
+    import molecules from '../data/molecules'
     import { stopTimer, timer, timerMS, timerText } from '../stores/timer'
+    import shuffle from '../util/shuffle'
 
     const order = shuffle(molecules)
 
@@ -77,6 +78,7 @@
 </script>
 
 {#if !completed}
+    <BackButton />
     <div class="container">
         <h1 class="text">
             <Formula

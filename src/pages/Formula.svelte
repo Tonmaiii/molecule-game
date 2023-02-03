@@ -8,14 +8,15 @@
         setOxidation
     } from '../stores/formula'
 
-    import molecules from '../data/molecules'
-    import shuffle from '../util/shuffle'
-    import SelectorMenu from '../components/FormulaSelectorMenu.svelte'
-    import UtilButtons from '../components/UtilButtons.svelte'
-    import Timer from '../components/Timer.svelte'
-    import { stopTimer, timer, timerMS, timerText } from '../stores/timer'
+    import BackButton from '../components/BackButton.svelte'
     import Formula from '../components/Formula.svelte'
+    import SelectorMenu from '../components/FormulaSelectorMenu.svelte'
     import ScoreSubmit from '../components/ScoreSubmit.svelte'
+    import Timer from '../components/Timer.svelte'
+    import UtilButtons from '../components/UtilButtons.svelte'
+    import molecules from '../data/molecules'
+    import { stopTimer, timer, timerMS, timerText } from '../stores/timer'
+    import shuffle from '../util/shuffle'
 
     const order = shuffle(molecules)
 
@@ -84,6 +85,7 @@
 </script>
 
 {#if !completed}
+    <BackButton />
     <div class="container">
         <h2 class="text">{molecule.name}</h2>
         <div class="text">

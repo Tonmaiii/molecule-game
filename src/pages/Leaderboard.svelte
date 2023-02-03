@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { ref, onValue, orderByKey } from 'firebase/database'
+    import { onValue, ref } from 'firebase/database'
+    import BackButton from '../components/BackButton.svelte'
     import { db } from '../firebase'
     import { timerText } from '../stores/timer'
 
@@ -20,7 +21,7 @@
             (a, b) => b.percentage - a.percentage || a.time - b.time
         )
     })
-    
+
     onValue(formulaRef, snapshot => {
         formulaBoard = []
         snapshot.forEach(score => {
@@ -35,11 +36,18 @@
 </script>
 
 <main>
+    <BackButton />
     <h1>Leaderboard</h1>
 
     <div class="tabs">
-        <button on:click={() => (gamemode = 'name')}>Naming</button>
-        <button on:click={() => (gamemode = 'formula')}>Formula</button>
+        <button
+            data-active={gamemode === 'name'}
+            on:click={() => (gamemode = 'name')}>Naming</button
+        >
+        <button
+            data-active={gamemode === 'formula'}
+            on:click={() => (gamemode = 'formula')}>Formula</button
+        >
     </div>
     <hr />
     <div class="leaderboard">
@@ -65,6 +73,17 @@
 
     button {
         font-size: 1rem;
+        color: #000000;
+        background-color: #e8e8e8;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        border: none;
+    }
+
+    button[data-active='true'] {
+        font-size: 1rem;
+        color: #808080;
+        background-color: #c8c8c8;
     }
 
     .tabs {
