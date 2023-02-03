@@ -19,7 +19,7 @@ export default [
     new Molecule('dihydrogen phosphate ion', 'H2PO4', -1),
     new Molecule('phosphorous acid', 'H3PO3'),
     new Molecule('phosphite ion', 'PO3', -3),
-    new Molecule('hydrogen phosphite ion', 'HPO3', -2),
+    new Molecule('biphosphite ion', 'HPO3', -2),
     new Molecule('dihydrogen phosphite ion', 'H2PO3', -1),
 
     new Molecule('chloric acid', 'HClO3'),
