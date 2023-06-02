@@ -50,6 +50,6 @@ export default [
     new Molecule('cyanide ion', 'CN', -1),
     new Molecule('hydroxide ion', 'OH', -1),
     new Molecule('hydronium ion', 'H3O', 1),
-    new Molecule('ammonia ion', 'NH3'),
+    new Molecule('ammonia', 'NH3'),
     new Molecule('ammonium ion', 'NH4', 1)
 ]
