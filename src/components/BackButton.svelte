@@ -1,4 +1,4 @@
-<a href="/"><i class="fas fa-angle-left" /></a>
+<a href="/#"><i class="fas fa-angle-left" /></a>
 
 <style>
     a {
