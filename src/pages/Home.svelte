@@ -1,12 +1,13 @@
 <main>
     <h1>Acid & Ion Game</h1>
     <div>
-        <a href="/#/name">sulfuric acid</a>
-        <a href="/#/formula">H₂SO₄</a>
-        <a href="/#/leaderboard" class="leaderboard"
+        <a class="card" href="/#/name">sulfuric acid</a>
+        <a class="card" href="/#/formula">H₂SO₄</a>
+        <a class="leaderboard card" href="/#/leaderboard"
             ><i class="fas fa-ranking-star" /></a
         >
     </div>
+    <a class="credit" href="https://github.com/tonmaiii">Tonmaii</a>
 </main>
 
 <style>
@@ -25,7 +26,7 @@
         width: 80%;
     }
 
-    a {
+    .card {
         display: flex;
         text-decoration: none;
         color: #c0c0c0;
@@ -38,6 +39,14 @@
         align-items: center;
         justify-content: center;
         border-radius: 1rem;
+    }
+
+    .credit {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        color: black;
+        text-decoration: none;
     }
 
     .leaderboard {
