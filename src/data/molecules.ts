@@ -46,10 +46,10 @@ export default [
     new Molecule('hydroiodic acid', 'HI'),
     new Molecule('hydrofluoric acid', 'HF'),
 
-    new Molecule('permanganate', 'MnO4', -1),
-    new Molecule('cyanide', 'CN', -1),
-    new Molecule('hydroxide', 'OH', -1),
-    new Molecule('hydronium', 'H3O', 1),
+    new Molecule('permanganate ion', 'MnO4', -1),
+    new Molecule('cyanide ion', 'CN', -1),
+    new Molecule('hydroxide ion', 'OH', -1),
+    new Molecule('hydronium ion', 'H3O', 1),
     new Molecule('ammonia', 'NH3'),
-    new Molecule('ammonium', 'NH4', 1)
+    new Molecule('ammonium ion', 'NH4', 1)
 ]
